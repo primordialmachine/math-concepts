@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Primordial Machine's Trigonometric Functors Library
+% Copyright (C) 2017-2019 Michael Heilmann
+%
+% This software is provided 'as-is', without any express or implied warranty.
+% In no event will the authors be held liable for any damages arising from the
+% use of this software.
+%
+% Permission is granted to anyone to use this software for any purpose,
+% including commercial applications, and to alter it and redistribute it
+% freely, subject to the following restrictions:
+%
+% 1. The origin of this software must not be misrepresented;
+%    you must not claim that you wrote the original software.
+%    If you use this software in a product, an acknowledgment
+%    in the product documentation would be appreciated but is not required.
+%
+% 2. Altered source versions must be plainly marked as such,
+%    and must not be misrepresented as being the original software.
+%
+% 3. This notice may not be removed or altered from any source distribution.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[oneside]{book}
+
+\input{common}
+
+\SetOrganization{Primordial Machine's}
+\SetLibraryName{Trigonometric Functors Library}
+
+\SetLibraryIncludeFileName{include.hpp}
+\SetLibraryIncludesDirectoryPath{primordialmachine/trigonometric-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/includes}
+
+\SetLibraryIncludeDirectiveFilePath{primordialmachine/trigonometric\_functors/include.hpp}
+
+\SetLibraryStaticLibrariesDirectoryPath{primordialmachine/trigonometric-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
+\SetLibraryStaticLibraryFileName{trigonometric-functors.lib}
+
+\SetLibraryVersion{v1.0}
+\SetLibraryRepository{https://github.com/primordialmachine/trigonometric-functors}
+\SetAuthor{Michael Heilmann}
+\SetEmail{michaelheilmann@primordialmachine.com}
+
+\SetDocumentType{User Manual}
+
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\pagenumbering{gobble}
+
+\mainmatter
+
+\chapter{Synopsis}
+C++ 17 library providing trigonometric functors.
+The library is made available publicly on
+\href{\GetLibraryRepository}{Github}
+under the
+\href{\GetLibraryRepository/blob/master/LICENSE}{MIT License}.
+
+\chapter{Requirements}
+If the library is added to a project, then one needs to add the Primordial Machine libraries
+\href{https://github.com/primordialmachine/errors}{Errors}
+and
+\href{https://github.com/primordialmachine/functors}{Functors}
+as well.
+
+\chapter{Limitations and Restrictions}
+The library officially only supports Visual Studio 2017 and Windows 10.
+
+%\section{Introductory example}
+%Examples are located in the \href{\GetLibraryRepository/blob/master/examples}{examples} directory.
+
+\input{building_visual_studio_2017}
+
+\chapter{Library Interface Documentation}
+
+\section{\texttt{namespace primordialmachine}}
+The namespace this library is adding its declarations/definitions to.
+The added namespace elements are documented below.
+
+\input{functors}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{sin\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+sine
+of an angle.
+The first parameter is the angle, the return value the sine of that angle.
+
+%\noindent{}This library provides specializations of this functor for all floating point types.
+%The specializations assume the angle is measured in radians.\\
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{sin} (function)}
+A function which returns the value of \texttt{primordialmachine::sin\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}Possible implementations
+\begin{verbatim}
+template<typename T>
+auto sin(const T& v) -> decltype(sin_functor<T, void>()(v))
+{ return sin_functor<T, void>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{cos\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+cosine
+of an angle.
+The first parameter is the angle, the return value the cosine of that angle.
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{cos} (function)}
+A function which returns the value of \texttt{primordialmachine::cos\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}Possible implementations
+\begin{verbatim}
+template<typename T>
+auto cos(const T& v) -> decltype(cos_functor<T, void>()(v))
+{ return cos_functor<T, void>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{tan\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+tangens
+of an angle.
+The first parameter is the angle, the return value the tangens of that angle.
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{tan} (function)}
+A function which returns the value of \texttt{primordialmachine::tan\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}A possible implementation is
+\begin{verbatim}
+template<typename T>
+auto tan(const T& v) -> decltype(tan_functor<T>()(v))
+{ return tan_functor<T>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{acos\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+arccosine
+of a value.
+The first parameter is the value, the return value the arccosine of that value.
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{acos} (function)}
+A function which returns the value of \texttt{primordialmachine::acos\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}A possible implementation is
+\begin{verbatim}
+template<typename T>
+auto acos(const T& v) -> decltype(acos_functor<T, void>()(v))
+{ return acos_functor<T, void>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{asin\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+arcsine
+of a value.
+The first parameter is the value, the return value the arcsine of that value.
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{asin} (function)}
+A function which returns the value of \texttt{primordialmachine::asin\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}A possible implementation is
+\begin{verbatim}
+template<typename T>
+auto asin(const T& v) -> decltype(asin_functor<T, void>()(v))
+{ return asin_functor<T, void>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{cot\_functor} (struct)}
+A \textit{UnaryFunctorBase} which computes the
+cotangens of an angle.
+The first parameter is the angle, the return value the cotangens of that angle.
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\subsection{\texttt{cot} (function)}
+A function which returns the value of \texttt{primordialmachine::cot\_functor\textlangle T\textrangle}
+for a value of type \texttt{T}.
+
+\noindent{}A possible implementation is
+\begin{verbatim}
+template<typename T>
+auto cot(const T& v) -> decltype(cot_functor<T, void>()(v))
+{ return cot_functor<T, void>()(v); }
+\end{verbatim}
+
+\noindent{}\textcolor{orange}{\textit{Defect: No error/exception specification is provided.}}
+
+\end{document}
